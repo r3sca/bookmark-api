@@ -29,11 +29,13 @@ jobs:
       run: ./mvnw verify
 
     - if: ${{ github.ref == 'refs/heads/main' }}
-      name: Build and Publish Docker Image
-      run: | 
-        ./mvnw clean package jib:dockerBuild -DskipTests
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push ${{ secrets.DOCKER_USERNAME }}/bookmarker-api
+      name: Build and Publish Docker Image with Jib
+      run: |
+        ./mvnw compile jib:build -DskipTests \
+          -Djib.to.image=${{ secrets.DOCKER_USERNAME }}/bookmarker-api:latest \
+          -Djib.to.auth.username=${{ secrets.DOCKER_USERNAME }} \
+          -Djib.to.auth.password=${{ secrets.DOCKER_PASSWORD }}
+
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     # - name: Update dependency graph

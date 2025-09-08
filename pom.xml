@@ -30,7 +30,7 @@
         <java.version>17</java.version>
         <jib-maven-plugin.version>3.4.4</jib-maven-plugin.version>
         <problem-spring-web.version>0.29.1</problem-spring-web.version>
-        <dockerUserName>sivaprasadreddy</dockerUserName>
+        <dockerUserName>autowired</dockerUserName>
         <dockerImageName>${dockerUserName}/${project.artifactId}</dockerImageName>
         <mapstruct.version>1.6.3</mapstruct.version>
     </properties>
@@ -179,7 +179,7 @@
                 <version>${jib-maven-plugin.version}</version>
                 <configuration>
                     <from>
-                        <image>eclipse-temurin:17-jre</image>
+                        <image>eclipse-temurin:17-jre-focal</image>
                     </from>
                     <to>
                         <image>${dockerImageName}</image>
